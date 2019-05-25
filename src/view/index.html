@@ -19,7 +19,7 @@
 
         <form id="form">
             <div class="form-group">
-                <label for="exampleInputEmail1" class="color">Texto para Cifrar</label>
+                <label for="exampleInputEmail1" class="color">Texto para Cifrar ou Decifrar</label>
                 <textarea class="form-control texto" id="exampleFormControlTextarea1" rows="3"></textarea>
             </div>
             <div class="form-group">
@@ -28,8 +28,8 @@
                     placeholder="Chave...">
             </div>
             <div class="buttons">
-                <button type="submit" class="btn-primary form-control w">Criptografar</button>
-                <button type="submit" class="btn-primary form-control">Descriptografar</button>
+                <button class="botao w" onclick="criptografar()">Criptografar</button>
+                <button class="botao" onclick="descriptografar()">Descriptografar</button>
             </div>
         </form>
 
