@@ -96,7 +96,7 @@ descriptografar = () => {
                     if (anchor > c.length - 1) {
                         anchor = 0;
                     }
-                    let pos = ((j - c[anchor]) % 26);
+                    let pos = (((j - c[anchor]) + alfabeto.length) % 26);
                     anchor += 1;
                     res = alfabeto[pos];
                     resultado += res;
