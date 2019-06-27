@@ -1,6 +1,7 @@
 var alfabeto = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 var acento = ["ã", "á", "à", "â", "é", "è", "ê", "í", "î", "ì", "ó", "ô", "ò", "õ", "ú", "ù", "û", "ç"];
 var sAcento = ["a", "a", "a", "a", "e", "e", "e", "i", "i", "i", "o", "o", "o", "o", "u", "u", "u", "c"];
+var numsim = '1234567890!@#$%¨&*()_+-=§,./|';
 var chave = []
 
 capturarElemento = (ref) => {
@@ -13,7 +14,7 @@ verificarChave = () => {
     console.log(chave);
     if (!chave.length) {
         return alert('Chave não Inserida');
-    };
+    }; 
 }
 
 preencherChave = () => {
@@ -35,7 +36,7 @@ retirarAcento = (text) => {
     for (let i = 0; i < text.length; i++) {
         if (text[i] != " ") {
             for (let j = 0; j < acento.length; j++) {
-                if (text[i] == acento[j]) {
+                if (text[i] === acento[j]) {
                     aux += sAcento[j]
                     texto = 1
                 } else if (text[i] != acento[j]) {
@@ -61,21 +62,32 @@ criptografar = () => {
     let c = preencherChave();
     let anchor = 0;
     for (let i = 0; i < text.length; i++) {
-        if (text[i] != " ") {
-            for (let j = 0; j < alfabeto.length; j++) {
-                if (text[i] == alfabeto[j]) {
-                    if (anchor > c.length - 1) {
-                        anchor = 0;
-                    }
-                    let pos = ((j + c[anchor]) % 26);
-                    anchor += 1;
-                    res = alfabeto[pos];
-                    resultado += res;
-                }
+        console.log(text[i])
+
+        for (let k = 0; k < numsim.length; k++) {
+            if (text[i] === numsim.charAt(k)) {
+                resultado += numsim.charAt(k)
+                // console.log(text[i];
             }
-        } else {
-            res = " ";
-            resultado += res;
+        }
+
+        if (i <= text.length) {
+            if (text[i] != " ") {
+                for (let j = 0; j < alfabeto.length; j++) {
+                    if (text[i] == alfabeto[j]) {
+                        if (anchor > c.length - 1) {
+                            anchor = 0;
+                        }
+                        let pos = ((j + c[anchor]) % 26);
+                        anchor += 1;
+                        res = alfabeto[pos];
+                        resultado += res;
+                    }
+                }
+            } else {
+                res = " ";
+                resultado += res;
+            }
         }
     }
     console.log(resultado);
@@ -90,21 +102,30 @@ descriptografar = () => {
     let c = preencherChave();
     let anchor = 0;
     for (let i = 0; i < text.length; i++) {
-        if (text[i] != " ") {
-            for (let j = 0; j < alfabeto.length; j++) {
-                if (text[i] == alfabeto[j]) {
-                    if (anchor > c.length - 1) {
-                        anchor = 0;
-                    }
-                    let pos = (((j - c[anchor]) + alfabeto.length) % 26);
-                    anchor += 1;
-                    res = alfabeto[pos];
-                    resultado += res;
-                }
+
+        for (let k = 0; k < numsim.length; k++) {
+            if (text[i] === numsim.charAt(k)) {
+                resultado += numsim.charAt(k);
             }
-        } else {
-            res = " ";
-            resultado += res;
+        }
+
+        if (i < text.length) {
+            if (text[i] != " ") {
+                for (let j = 0; j < alfabeto.length; j++) {
+                    if (text[i] == alfabeto[j]) {
+                        if (anchor > c.length - 1) {
+                            anchor = 0;
+                        }
+                        let pos = (((j - c[anchor]) + alfabeto.length) % 26);
+                        anchor += 1;
+                        res = alfabeto[pos];
+                        resultado += res;
+                    }
+                }
+            } else {
+                res = " ";
+                resultado += res;
+            }
         }
     }
     console.log(resultado);
